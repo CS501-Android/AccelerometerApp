@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorManager: SensorManager
     private lateinit var Accelerometer : Sensor
     lateinit var seekBar: SeekBar
-    private var threshold: Int = 0
+    private var threshold: Int = 50
 
     fun createToast(input: String) {
         Toast.makeText(
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         seekBar = findViewById(R.id.seekBar)
+        seekBar.progress = threshold
         seekBar?.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,

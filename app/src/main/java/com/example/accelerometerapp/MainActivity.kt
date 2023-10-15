@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorManager: SensorManager
     private lateinit var Accelerometer : Sensor
     lateinit var seekBar: SeekBar
-    private var threshold: Int = 50
+    private var threshold: Int = 12
 
     fun createToast(input: String) {
         Toast.makeText(
@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
         })
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        Accelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        Accelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
         sensorManager!!.registerListener(mSensorEventListener, Accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     private val mSensorEventListener: SensorEventListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent) {
-            if (event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
+            if (event.sensor.type == Sensor.TYPE_LINEAR_ACCELERATION) {
                 if (event.values[0] > threshold) createToast("X axis movement over threshold")
                 if (event.values[1] > threshold) createToast("Y axis movement over threshold")
                 if (event.values[2] > threshold) createToast("Z axis movement over threshold")

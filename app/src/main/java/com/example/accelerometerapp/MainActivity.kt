@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorManager: SensorManager
     private lateinit var Accelerometer : Sensor
     lateinit var seekBar: SeekBar
-    private var threshold: Int = 12
+    var threshold: Int = 12
 
     fun createToast(input: String) {
         Toast.makeText(
